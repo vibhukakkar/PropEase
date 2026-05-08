@@ -3,8 +3,42 @@ import '../index.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <p>&copy; 2026 PropEase – Smart Property Finder. All rights reserved.</p>
+    <footer className="footer-main">
+      <div className="footer-content">
+        <div className="footer-section">
+          <h3 className="footer-logo">PropEase</h3>
+          <p>Finding your perfect rental home made simple, smart, and verified.</p>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="/rent">Rent</a></li>
+            <li><a href="/profile">Profile</a></li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Cities</h4>
+          <ul>
+            <li>Gurgaon</li>
+            <li>Noida</li>
+            <li>Delhi</li>
+            <li>Faridabad</li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Contact Us</h4>
+          <p>Email: support@propease.com</p>
+          <p>Phone: +91 123 456 7890</p>
+        </div>
+      </div>
+      <div className="footer-bottom">
+        <p>&copy; 2026 PropEase – Smart Property Finder. All rights reserved.</p>
+      </div>
     </footer>
   );
 };
