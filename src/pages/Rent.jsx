@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css';
+import './Rent.css';
 
 const Rent = () => {
   const rentProperties = [
