@@ -102,16 +102,7 @@ const Home = () => {
           <h1>Find a rental home<br />that fits your life.</h1>
           <p className="hero-desc">Browse furnished apartments, studios, builder floors, and family homes with clear pricing and trusted listings.</p>
 
-          <form className="hero-search-box" onSubmit={handleSearch}>
-            <input type="text" placeholder="City, locality, or landmark" className="search-input" />
-            <select className="search-select">
-              <option>Any home</option>
-              <option>Apartment</option>
-              <option>Studio</option>
-              <option>Villa</option>
-            </select>
-            <button type="submit" className="btn-search-green">Search Rentals</button>
-          </form>
+         
 
           <div className="hero-stats">
             <div className="stat-card">
