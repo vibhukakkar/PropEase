@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropertyCard from '../components/PropertyCard';
 import '../index.css';
 
 const Buy = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCity, setSelectedCity] = useState('All');
 
   const properties = [
     {
@@ -183,91 +185,71 @@ const Buy = () => {
     }
   ];
 
+  const filteredProperties = properties.filter(property => {
+    const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         property.location.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCity = selectedCity === 'All' || property.location.includes(selectedCity);
+    return matchesSearch && matchesCity;
+  });
+
   return (
-    <div className="home-container">
+    <div className="buy-container">
+      {/* Simple Header */}
+      <section className="buy-header">
+        <div className="buy-header-content">
+          <h1>Find Your Next Premium Home</h1>
+          <p>Browse through our handpicked collection of verified luxury properties.</p>
+        </div>
+      </section>
 
-      {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <p className="hero-subtitle-green">
-            BUY PREMIUM PROPERTIES WITH CONFIDENCE
-          </p>
-
-          <h1>
-            Find your dream<br />home today.
-          </h1>
-
-          <p className="hero-desc">
-            Explore luxury villas, apartments, penthouses, and premium family homes
-            across Delhi NCR with verified listings and transparent pricing.
-          </p>
-
-          <form className="hero-search-box">
-            <input
-              type="text"
-              placeholder="Search city, locality, project..."
-              className="search-input"
+      {/* Simple Search & Filter Bar */}
+      <section className="buy-filter-section">
+        <div className="buy-filter-container">
+          <div className="buy-search-box">
+            <span className="search-icon">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Search by title or location..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-
-            <select className="search-select">
-              <option>Any Property</option>
-              <option>Apartment</option>
-              <option>Villa</option>
-              <option>Penthouse</option>
-              <option>Builder Floor</option>
+          </div>
+          
+          <div className="buy-city-filter">
+            <label>City:</label>
+            <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
+              <option value="All">All Cities</option>
+              <option value="Gurgaon">Gurgaon</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Noida">Noida</option>
+              <option value="Ghaziabad">Ghaziabad</option>
             </select>
-
-            <button type="submit" className="btn-search-green">
-              Search Properties
-            </button>
-          </form>
-
-          <div className="hero-stats">
-            <div className="stat-card">
-              <h3>2,500+</h3>
-              <p>Verified properties</p>
-            </div>
-
-            <div className="stat-card">
-              <h3>15+</h3>
-              <p>Cities covered</p>
-            </div>
-
-            <div className="stat-card">
-              <h3>4.9/5</h3>
-              <p>Buyer satisfaction</p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* CITY SECTION */}
-      <section className="explore-city-section">
-        <h2>Explore properties by city</h2>
-
-        <div className="city-pills">
-          <button className="city-pill">Gurgaon</button>
-          <button className="city-pill">Delhi</button>
-          <button className="city-pill">Noida</button>
-          <button className="city-pill">Faridabad</button>
-          <button className="city-pill">Ghaziabad</button>
+      {/* Results Section */}
+      <section className="buy-results-section">
+        <div className="results-info">
+          <h2>{filteredProperties.length} Properties Found</h2>
+          {selectedCity !== 'All' && <span className="active-filter">City: {selectedCity}</span>}
         </div>
-      </section>
-
-      {/* FEATURED PROPERTIES */}
-      <section className="fresh-homes-section">
-        <h2>16 premium properties available</h2>
 
         <div className="homes-grid">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))
+          ) : (
+            <div className="no-results">
+              <h3>No properties match your search.</h3>
+              <button className="btn-view" onClick={() => {setSearchTerm(''); setSelectedCity('All');}}>Clear All Filters</button>
+            </div>
+          )}
         </div>
       </section>
-
     </div>
   );
 };
 
 export default Buy;
-
