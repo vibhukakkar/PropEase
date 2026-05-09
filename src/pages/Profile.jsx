@@ -13,12 +13,7 @@ const Profile = () => {
     memberSince: 'May 2026',
     bio: 'No bio added yet.'
   });
-
-  const [activeTab, setActiveTab] = useState('overview');
-  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(user);
-
-  // Sample data for the saved properties
   const savedProperties = [
     {
       id: 1,
@@ -46,11 +41,6 @@ const Profile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    setUser(formData);
-    setIsEditing(false);
-  };
 
   const getInitials = (name) => {
     if (!name) return 'U';
@@ -108,7 +98,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container fade-in">
-      {/* Sidebar / User Info */}
+
 
       <aside className="profile-sidebar">
         <div className="user-card-pro">
@@ -136,9 +126,8 @@ const Profile = () => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
       <main className="profile-main-content">
-        {/* Section 1: Overview */}
+
         <section className="profile-section-pro fade-in">
           <div className="content-header">
             <h1>Welcome back, {user.name.split(' ')[0]}!</h1>
@@ -166,7 +155,7 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* Section 2: Saved Properties */}
+
         <section className="profile-section-pro fade-in" style={{ marginTop: '4rem' }}>
           <div className="content-header">
             <h1>Saved Properties</h1>
