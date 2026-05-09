@@ -61,7 +61,7 @@ const Profile = () => {
               <input
                 type="text"
                 name="name"
-                placeholder="John Doe"
+                placeholder="Enter your Name"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
@@ -72,7 +72,7 @@ const Profile = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="john@example.com"
+                placeholder="abc@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
